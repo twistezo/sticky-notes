@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: site-head">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
+	<title>Sticky Notes</title>
+</head>
+<body>
+	<div class="container">
+	<header th:replace="layout :: site-header" />
+		<div class="header">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="lastNotes">
+						List of users:
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="helloUser" th:inline="text" sec:authorize="isAuthenticated()">
+						You are logged as: 
+						<b>[[${#httpServletRequest.remoteUser}]]</b>
+					</div>
+					<div class="helloUser" th:inline="text" sec:authorize="isAnonymous()">
+						Hello,
+						<b>anonymous</b>
+					</div>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+	<div class="container">
+	<div class="row">
+			<div class="col-sm-6">
+				  <table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Id</th>
+				        <th>Username</th>
+				        <th>First name</th>
+				        <th>Last name</th>
+				        <th>Password (Hash)</th>
+				        <th>Role</th>
+				        <th>Notes</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr th:each="u : ${listOfUsers}">
+				        <td th:text="${u.id}"></td>
+				        <td th:text="${u.username}"></td>
+				        <td th:text="${u.firstName}"></td>
+				        <td th:text="${u.lastName}"></td>
+				        <td th:text="${#strings.substring(u.password,0,5) +'...'}"></td>
+				        <td th:text="${u.role}"></td>
+				        <td th:text="${u.notes}"></td>       
+				      </tr>
+				    </tbody>
+				  </table>
+			</div>
+	  </div>
+				  
+	  <div class="footer">
+	 	 <footer th:replace="layout :: site-footer" />
+	  </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
