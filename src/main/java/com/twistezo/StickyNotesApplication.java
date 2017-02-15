@@ -1,4 +1,4 @@
-package com.twistezo.runners;
+package com.twistezo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

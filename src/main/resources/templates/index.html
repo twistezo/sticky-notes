@@ -34,7 +34,7 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-8">
 				<div th:each="p : ${listOfNotes}">
 					<div class="title">
 						<span th:text="${p.title}"></span>
@@ -59,7 +59,6 @@
 					<br>
 				</div>
 			</div>
-			<div class="col-sm-6"></div>
 		</div>
 		<div class="footer">
 			<footer th:replace="layout :: site-footer" />

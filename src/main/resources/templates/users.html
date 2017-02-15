@@ -33,8 +33,10 @@
 		</div>
 	</div>
 	<div class="container">
+	<div class="loginContainer">
 	<div class="row">
-			<div class="col-sm-6">
+			<form th:action="@{/users}" th:object="${userWrapper}" method="post">
+				<div class="col-sm-8">
 				  <table class="table table-hover">
 				    <thead>
 				      <tr>
@@ -45,26 +47,32 @@
 				        <th>Password (Hash)</th>
 				        <th>Role</th>
 				        <th>Notes</th>
+				        <th>Select</th>
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr th:each="u : ${listOfUsers}">
+				      <tr th:each="u, i : ${listOfUsers}">
 				        <td th:text="${u.id}"></td>
 				        <td th:text="${u.username}"></td>
 				        <td th:text="${u.firstName}"></td>
 				        <td th:text="${u.lastName}"></td>
 				        <td th:text="${#strings.substring(u.password,0,5) +'...'}"></td>
 				        <td th:text="${u.role}"></td>
-				        <td th:text="${u.notes}"></td>       
+				        <td><span th:each="note, i: ${u.notes}" th:text="${(i.index > 0 ? ', ' : '') + note.id}" /></td> 
+				 		<td><input type="checkbox" th:field="*{listOfUsers[__${i.index}__].userChecked}" /></td>
 				      </tr>
 				    </tbody>
 				  </table>
-			</div>
-	  </div>
-				  
-	  <div class="footer">
+	  			  <h5 style="text-align: center">Press button to delete selected user(s).</h5>
+				  <button class="buttonLogin" type="submit">Delete</button>
+				  <span></span>
+				</div>
+			</form>
+		</div>
+		</div>
+	<div class="footer">
 	 	 <footer th:replace="layout :: site-footer" />
-	  </div>
+	</div>
     </div>
 </body>
 </html>

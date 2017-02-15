@@ -32,11 +32,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		/*
 		 * .antMatchers -> allowed URLs
+		 *  
+		 *  disable -> http.csrf().disable(); <- only for testing
 		 * 
 		 */
 		
+		http.csrf().disable();
 		http.authorizeRequests()
-				.antMatchers("/index", "/register", "/users", "/addUser", "/deleteUser", "/addNote", "/deleteNote", "/notes")
+		
+				.antMatchers("/index", "/register", "/users", "/addUser", "/deleteUser", 
+							 "/addNote", "/deleteNote", "/notes", "/usersForm")
 				.permitAll()
 				.anyRequest()
 				.authenticated()

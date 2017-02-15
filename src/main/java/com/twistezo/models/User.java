@@ -43,9 +43,10 @@ public class User {
 	/**
 	 * ONE User.author can have MANY <Note>notes
 	 */
-	
 	@OneToMany(mappedBy = "author")
 	private Set<Note> notes = new HashSet<>();
+	
+	private boolean userChecked;
 	
 	public User() {
 		super();
@@ -113,5 +114,15 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public boolean isUserChecked() {
+		return userChecked;
+	}
+
+	public void setUserChecked(boolean userChecked) {
+		this.userChecked = userChecked;
+	}
+
+
 
 }

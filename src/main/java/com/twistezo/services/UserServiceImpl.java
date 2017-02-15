@@ -1,11 +1,11 @@
 package com.twistezo.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.twistezo.models.User;
+import com.twistezo.models.UserWrapper;
 import com.twistezo.repositories.UserDAO;
 
 /**
@@ -16,7 +16,7 @@ import com.twistezo.repositories.UserDAO;
 
 @Service
 public class UserServiceImpl implements UserService{
-
+	
 	@Autowired
 	UserDAO userDAO;
 	
@@ -68,6 +68,17 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public void deleteCheckedUser(UserWrapper userWrapper) {
+		
+		for(User u : userWrapper.getListOfUsers()){
+			
+			if(u.isUserChecked() == true){
+				this.userDAO.delete(u.getId());
+			}
+		}
+	}
+	
 	@Override
 	public User findById(Long id) {
 		return this.userDAO.findById(id);
