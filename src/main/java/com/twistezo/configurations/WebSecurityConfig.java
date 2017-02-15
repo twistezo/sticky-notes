@@ -20,7 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	UserDetailsService userDetailsService;
+	private UserDetailsService userDetailsService;
 	
 	@Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -36,8 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 *  disable -> http.csrf().disable(); <- only for testing
 		 * 
 		 */
-		
+
 		http.csrf().disable();
+
 		http.authorizeRequests()
 		
 				.antMatchers("/index", "/register", "/users", "/addUser", "/deleteUser", 

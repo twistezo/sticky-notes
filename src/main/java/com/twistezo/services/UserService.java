@@ -1,9 +1,9 @@
 package com.twistezo.services;
 
-import java.util.List;
-
 import com.twistezo.models.User;
 import com.twistezo.models.UserWrapper;
+
+import java.util.List;
 
 /**
  * 

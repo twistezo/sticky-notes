@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: site-head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
+    <title>Sticky Notes</title>
+</head>
+<body>
+<div class="container">
+    <header th:replace="layout :: site-header" />
+    <div class="header">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="lastNotes">
+                    List of notes:
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="helloUser" th:inline="text" sec:authorize="isAuthenticated()">
+                    You are logged as:
+                    <b>[[${#httpServletRequest.remoteUser}]]</b>
+                </div>
+                <div class="helloUser" th:inline="text" sec:authorize="isAnonymous()">
+                    Hello,
+                    <b>anonymous</b>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+<div class="container">
+    <div class="loginContainer">
+        <div class="row">
+            <form th:action="@{/notes}" th:object="${noteWrapper}" method="post">
+                <div class="col-sm-8">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Body</th>
+                            <th>Author</th>
+                            <th>Is Done?</th>
+                            <th>Date</th>
+                            <th>Select</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="u, i : ${listOfNotes}">
+                            <td th:text="${u.id}"></td>
+                            <td th:text="${u.title}"></td>
+                            <td th:text="${#strings.substring(u.body,0,15) +'...'}"></td>
+                            <td th:text="${u.author.username}"></td>
+                            <td th:text="${u.isDone()}"></td>
+                            <td th:text="${u.date}"></td>
+                            <td><input type="checkbox" th:field="*{listOfNotes[__${i.index}__].noteChecked}" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h5 style="text-align: center">Press button to delete selected note(s).</h5>
+                    <button class="buttonLogin" type="submit">Delete</button>
+                    <span></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <footer th:replace="layout :: site-footer" />
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+

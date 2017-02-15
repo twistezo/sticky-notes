@@ -1,6 +1,8 @@
 package com.twistezo.controllers;
 
-import java.util.List;
+import com.twistezo.models.User;
+import com.twistezo.models.UserWrapper;
+import com.twistezo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.twistezo.models.User;
-import com.twistezo.models.UserWrapper;
-import com.twistezo.services.UserService;
+import java.util.List;
 
 /**
  * 
@@ -24,13 +24,14 @@ import com.twistezo.services.UserService;
 public class UserController {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	@Autowired
-	UserWrapper userWrapper;
+	private UserWrapper userWrapper;
 	
 	@RequestMapping("/users")
 	public String home(Model model){
+
 		List<User> listOfUsers = userService.findAll();
 		userWrapper.setListOfUsers(listOfUsers);
 		
@@ -41,7 +42,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
-	public String deleteUser(@ModelAttribute UserWrapper userWrapper, Model model){
+	public String deleteUser(@ModelAttribute UserWrapper userWrapper){
 		
 		userService.deleteCheckedUser(userWrapper);
 		

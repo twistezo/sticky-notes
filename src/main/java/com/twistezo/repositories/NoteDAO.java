@@ -19,5 +19,5 @@ public interface NoteDAO extends JpaRepository<Note, Long> {
 
 	@Query("FROM Note as n ORDER BY n.date DESC")
 	Page<Note> findAll(Pageable pageable);
-	
+
 }

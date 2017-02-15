@@ -1,14 +1,8 @@
 package com.twistezo.models;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  * 
@@ -45,9 +39,13 @@ public class User {
 	 */
 	@OneToMany(mappedBy = "author")
 	private Set<Note> notes = new HashSet<>();
-	
-	private boolean userChecked;
-	
+
+    /**
+     * @Transient is used for non connecting this field with DB
+     */
+    @Transient
+	private boolean userChecked = false;
+
 	public User() {
 		super();
 	}
@@ -122,7 +120,5 @@ public class User {
 	public void setUserChecked(boolean userChecked) {
 		this.userChecked = userChecked;
 	}
-
-
 
 }

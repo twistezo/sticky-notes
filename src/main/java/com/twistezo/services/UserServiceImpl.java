@@ -32,7 +32,6 @@ public class UserServiceImpl implements UserService{
 	public void save(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		
-		
 		/**
 		 * VERIFICATION of addUser & register
 		 * 1. Check that userinput: username & password aren't empty
@@ -44,7 +43,7 @@ public class UserServiceImpl implements UserService{
 			if(user.getRole().isEmpty() || user.getRole() != "ROLE_USER"){
 				user.setRole("ROLE_USER");
 			}
-			
+
 			if(userDAO.findByUsername(user.getUsername()) == null){
 				userDAO.save(user);
 			}
@@ -72,13 +71,12 @@ public class UserServiceImpl implements UserService{
 	public void deleteCheckedUser(UserWrapper userWrapper) {
 		
 		for(User u : userWrapper.getListOfUsers()){
-			
 			if(u.isUserChecked() == true){
 				this.userDAO.delete(u.getId());
 			}
 		}
 	}
-	
+
 	@Override
 	public User findById(Long id) {
 		return this.userDAO.findById(id);

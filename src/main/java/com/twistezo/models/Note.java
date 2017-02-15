@@ -1,16 +1,7 @@
 package com.twistezo.models;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  * 
@@ -46,6 +37,12 @@ public class Note {
 	
 	@Column(name = "IS_DONE")
 	private boolean isDone;
+
+    /**
+     * @Transient is used for non connecting this field with DB
+     */
+    @Transient
+    private boolean noteChecked = false;
 
 	public Note(){
 		super();
@@ -106,6 +103,12 @@ public class Note {
 	public void setDone(boolean isDone) {
 		this.isDone = isDone;
 	}
-	
-	
+
+    public boolean isNoteChecked() {
+        return noteChecked;
+    }
+
+    public void setNoteChecked(boolean noteChecked) {
+        this.noteChecked = noteChecked;
+    }
 }

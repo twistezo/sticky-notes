@@ -1,7 +1,9 @@
 package com.twistezo.services;
 
-import java.util.List;
 import com.twistezo.models.Note;
+import com.twistezo.models.NoteWrapper;
+
+import java.util.List;
 
 /**
  * 
@@ -12,5 +14,6 @@ import com.twistezo.models.Note;
 public interface NoteService {
 	
 	List<Note> findAll();
+    void deleteCheckedNote(NoteWrapper noteWrapper);
 
 }
