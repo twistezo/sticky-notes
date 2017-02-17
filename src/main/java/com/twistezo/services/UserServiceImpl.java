@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService{
 		 * 3. Check exist of duplicate userinput: username in database
 		 * If below is ok -> save new user to DB
 		 */
-		if(!user.getUsername().isEmpty() & !user.getPassword().isEmpty()){
-			if(user.getRole().isEmpty() || user.getRole() != "ROLE_USER"){
+		if(!user.getUsername().isEmpty() && !user.getPassword().isEmpty()){
+			if(user.getRole().isEmpty() || (user.getRole() != "ROLE_USER")){
 				user.setRole("ROLE_USER");
 			}
 

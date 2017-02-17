@@ -52,7 +52,7 @@
 								<span th:text="${#dates.format(p.date, 'dd.MM.yyyy')}+ ','"></span>
 								<span> done? </span>
 								<span th:if="${p.isDone()} == false">	<span class="glyphicon glyphicon-remove"></span>	</span>
-								<span th:if="${p.isDone()} == true">	<span class="glyphicon glyphicon-ok"></span>	</span>
+								<span th:if="${p.isDone()} == true">	<span style="color: #f4511e;"  class="glyphicon glyphicon-ok"></span>	</span>
 							</div>
 						</div>
 					</div>

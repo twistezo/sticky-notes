@@ -27,6 +27,7 @@ public class AddUserController {
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public String addUser(User user){
+
 		userService.save(user);
 		
 		return "redirect:/users";

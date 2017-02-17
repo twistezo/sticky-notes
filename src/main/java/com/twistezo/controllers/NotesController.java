@@ -32,7 +32,7 @@ public class NotesController {
     @RequestMapping("/notes")
     public String notes(Model model){
 
-        List<Note> listOfNotes = noteService.findAll();
+        List<Note> listOfNotes = noteService.findAllByOrderByDate();
         noteWrapper.setListOfNotes(listOfNotes);
 
         model.addAttribute("listOfNotes", listOfNotes);
@@ -44,6 +44,7 @@ public class NotesController {
     @RequestMapping(value = "/notes", method = RequestMethod.POST)
     public String deleteNote(@ModelAttribute NoteWrapper noteWrapper){
 
+        noteService.update(noteWrapper);
         noteService.deleteCheckedNote(noteWrapper);
 
         return "redirect:/notes";

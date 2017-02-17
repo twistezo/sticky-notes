@@ -21,7 +21,6 @@ public class Note {
 	/**
 	 * MANY "Note" can belong to ONE "User.author"
 	 */
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AUTHOR_ID")
 	private User author;

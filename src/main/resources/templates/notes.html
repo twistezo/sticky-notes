@@ -36,35 +36,37 @@
     <div class="loginContainer">
         <div class="row">
             <form th:action="@{/notes}" th:object="${noteWrapper}" method="post">
-                <div class="col-sm-8">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Title</th>
+                            <th class="text-nowrap">Id</th>
+                            <th class="text-nowrap">Title</th>
                             <th>Body</th>
-                            <th>Author</th>
-                            <th>Is Done?</th>
-                            <th>Date</th>
-                            <th>Select</th>
+                            <th class="text-nowrap">Author</th>
+                            <th class="text-nowrap">Done?</th>
+                            <th class="text-nowrap">Created date</th>
+                            <th class="text-nowrap">Delete?</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="u, i : ${listOfNotes}">
-                            <td th:text="${u.id}"></td>
-                            <td th:text="${u.title}"></td>
-                            <td th:text="${#strings.substring(u.body,0,15) +'...'}"></td>
-                            <td th:text="${u.author.username}"></td>
-                            <td th:text="${u.isDone()}"></td>
-                            <td th:text="${u.date}"></td>
+                            <td class="text-nowrap" th:text="${u.id}"></td>
+                            <td class="text-nowrap" th:text="${u.title}"></td>
+                            <td th:text="${u.body}"></td>
+                            <td class="text-nowrap" th:text="${u.author.username}"></td>
+                            <td><input type="checkbox" th:field="*{listOfNotes[__${i.index}__].done}" /></td>
+                            <td class="text-nowrap" th:text="${#dates.format(u.date, 'dd MMM yyyy')}"></td>
                             <td><input type="checkbox" th:field="*{listOfNotes[__${i.index}__].noteChecked}" /></td>
                         </tr>
                         </tbody>
                     </table>
-                    <h5 style="text-align: center">Press button to delete selected note(s).</h5>
-                    <button class="buttonLogin" type="submit">Delete</button>
+                    <h5 style="text-align: center">Press button for submit all your changes.</h5>
+                    <button class="buttonLogin" type="submit">Submit</button>
                     <span></span>
                 </div>
+                <div class="col-sm-1"></div>
             </form>
         </div>
     </div>

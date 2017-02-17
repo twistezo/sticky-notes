@@ -13,7 +13,9 @@ import java.util.List;
 
 public interface NoteService {
 	
-	List<Note> findAll();
+	List<Note> findAllByOrderByDate();
     void deleteCheckedNote(NoteWrapper noteWrapper);
+    void save(Note note);
+    void update(NoteWrapper noteWrapper);
 
 }

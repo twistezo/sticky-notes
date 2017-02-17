@@ -7,7 +7,7 @@ package com.twistezo.services;
  */
 
 public interface SecurityService {
-    String findLoggedInUsername();
 
-    void autologin(String username, String password);
+    String findLoggedInUsername();
+    void autoLogin(String username, String password);
 }
