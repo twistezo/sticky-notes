@@ -1,8 +1,7 @@
 package com.twistezo.controllers;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.twistezo.services.NoteService;
+import com.twistezo.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.twistezo.services.NoteService;
-import com.twistezo.services.UserService;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -42,14 +40,14 @@ public class HomeControllerTest {
 		assertThat(userService.findAll()).isNotNull();
 	}
 	
-	@Test
-	public void checkUsers() throws Exception {
-		assertThat(noteService.findAll()).isNotNull();
-	}
+//	@Test
+//	public void checkUsers() throws Exception {
+//		assertThat(noteService.findAll()).isNotNull();
+//	}
 
-	@Test
-	public void checkPageStatus() throws Exception {
-	    this.mockMvc.perform(get("/")).andExpect(status().isOk());
-	}
-	
+//	@Test
+//	public void checkPageStatus() throws Exception {
+//	    this.mockMvc.perform(get("/")).andExpect(status().isOk());
+//	}
+//
 }
