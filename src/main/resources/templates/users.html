@@ -36,8 +36,8 @@
 	<div class="loginContainer">
 	<div class="row">
 			<form th:action="@{/users}" th:object="${userWrapper}" method="post">
-                <div class="col-sm-2"></div>
-				<div class="col-sm-8">
+                <div class="col-sm-1"></div>
+				<div class="col-sm-10">
 				  <table class="table table-hover">
 				    <thead>
 				      <tr>
@@ -54,21 +54,21 @@
 				    <tbody>
 				      <tr th:each="u, i : ${listOfUsers}">
 				        <td th:text="${u.id}"></td>
-				        <td th:text="${u.username}"></td>
-				        <td th:text="${u.firstName}"></td>
-				        <td th:text="${u.lastName}"></td>
-				        <td th:text="${#strings.substring(u.password,0,5) +'...'}"></td>
-				        <td th:text="${u.role}"></td>
-				        <td><span th:each="note, i: ${u.notes}" th:text="${(i.index > 0 ? ', ' : '') + note.id}" /></td> 
+                        <td><input type="text" class="form-control" th:field="*{listOfUsers[__${i.index}__].username}"></td>
+                        <td><input type="text" class="form-control" th:field="*{listOfUsers[__${i.index}__].firstName}"></td>
+                        <td><input type="text" class="form-control" th:field="*{listOfUsers[__${i.index}__].lastName}"></td>
+                        <td th:text="${#strings.substring(u.password,0,5) +'...'}"></td>
+                        <td><input type="text" class="form-control" th:field="*{listOfUsers[__${i.index}__].role}"></td>
+				        <td><span th:each="note, i: ${u.notes}" th:text="${(i.index > 0 ? ', ' : '') + note.id}" /></td>
 				 		<td><input type="checkbox" th:field="*{listOfUsers[__${i.index}__].userChecked}" /></td>
 				      </tr>
 				    </tbody>
 				  </table>
-	  			  <h5 style="text-align: center">Press button to delete selected user(s).</h5>
-				  <button class="buttonLogin" type="submit">Delete</button>
+                  <h5 style="text-align: center">Press button for submit all your changes.</h5>
+				  <button class="buttonLogin" type="submit">Submit</button>
 				  <span></span>
 				</div>
-                <div class="col-sm-2"></div>
+                <div class="col-sm-1"></div>
 			</form>
 		</div>
 		</div>

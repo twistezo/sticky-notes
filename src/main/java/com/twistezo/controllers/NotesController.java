@@ -42,7 +42,7 @@ public class NotesController {
     }
 
     @RequestMapping(value = "/notes", method = RequestMethod.POST)
-    public String deleteNote(@ModelAttribute NoteWrapper noteWrapper){
+    public String updateNote(@ModelAttribute NoteWrapper noteWrapper){
 
         noteService.update(noteWrapper);
         noteService.deleteCheckedNote(noteWrapper);

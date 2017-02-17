@@ -42,8 +42,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
-	public String deleteUser(@ModelAttribute UserWrapper userWrapper){
-		
+	public String updateUser(@ModelAttribute UserWrapper userWrapper){
+
+	    userService.update(userWrapper);
 		userService.deleteCheckedUser(userWrapper);
 		
 		return "redirect:/users";
