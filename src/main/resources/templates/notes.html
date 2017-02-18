@@ -38,6 +38,15 @@
             <form th:action="@{/notes}" th:object="${noteWrapper}" method="post">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10">
+                    <div class="alert alert-info alert-dismissable" id="alert-info">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <strong>Info!</strong>
+                        <p>You can edit title and body text areas.
+                        <p>You can check 'Done?' if things from note are finished.
+                        <p>If You want to delete some notes simply check them.
+                        <p>This message will disappear after 5 seconds.
+                    </div>
+                    <br>
                     <table class="table table-hover">
                         <thead>
                         <tr>

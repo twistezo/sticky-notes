@@ -17,6 +17,14 @@
 					<div class="lastNotes">
 						Your last notes:
 					</div>
+                    <div class="alert alert-info alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <strong>Info!</strong>
+                        <p>You can click on note's headers to view one.
+                        <p>For rest site tab you have to be logged in.
+                        <p>Example username and password: user1, asd
+                        <p>This message will disappear after 5 seconds.
+                    </div>
 				</div>
 				<div class="col-sm-6">
 					<div class="helloUser" th:inline="text" sec:authorize="isAuthenticated()">
@@ -36,9 +44,11 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<div th:each="p : ${listOfNotes}">
+                    <a  th:href="@{/oneNote(id=${p.id})}">
 					<div class="title">
-						<span th:text="${p.title}"></span>
+                        <span th:text="${p.title}"></span>
 					</div>
+                    </a>
 					<div class="noteBody">
 						<div class="noteBodyBottom">
 							<div class="bodyText">

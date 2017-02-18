@@ -32,6 +32,16 @@ public class NoteServiceImpl implements NoteService {
 	}
 
     @Override
+    public List<Note> findAllByAuthor(User user) {
+        return this.noteDAO.findAllByAuthor(user);
+    }
+
+    @Override
+    public Note findById(Long id) {
+        return this.noteDAO.findById(id);
+    }
+
+    @Override
     public void deleteCheckedNote(NoteWrapper noteWrapper) {
         for(Note n : noteWrapper.getListOfNotes()){
 

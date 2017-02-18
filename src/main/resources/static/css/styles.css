@@ -116,3 +116,24 @@ body {
 .loginContainer {
 	 padding-bottom: 20px;
 }
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a:hover {
+    color:#f4511e;
+    text-decoration: none;
+}
+
+.alert {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.alert-info {
+    margin-bottom: 0px;
+}

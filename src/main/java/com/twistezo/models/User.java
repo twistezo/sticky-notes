@@ -1,6 +1,8 @@
 package com.twistezo.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,19 +20,28 @@ public class User {
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
+	@NotNull
+    @Size(min=2, max=30)
 	@Column(name = "USERNAME", length = 50)
 	private String username;
-	
+
+	@NotNull
+    @Size(min=2, max=30)
 	@Column(name = "FIRST_NAME", length = 50)
 	private String firstName;
-	
+
+    @NotNull
+    @Size(min=2, max=30)
 	@Column(name = "LAST_NAME", length = 50)
 	private String lastName;
-	
+
+    @NotNull
+    @Size(min=2, max=30)
 	@Column(name = "PASSWORD", length = 60)
 	private String password;
-	
+
+    @Size(min=2, max=30)
 	@Column(name = "ROLE", length = 50)
 	private String role;
 	

@@ -4,8 +4,11 @@ import com.twistezo.models.User;
 import com.twistezo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 /**
  * 
@@ -20,16 +23,21 @@ public class AddUserController {
 	private UserService userService;
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
-	public String addUser(){
+	public String addUser(User user){
 		
 		return "addUser";
 	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public String addUser(User user){
+	public String addUser(@Valid User user, BindingResult bindingResult){
 
-		userService.save(user);
-		
-		return "redirect:/users";
+	    if(bindingResult.hasErrors()){
+	        return "addUser";
+        }
+        else{
+            userService.save(user);
+            return "redirect:/users";
+        }
+
 	}
 }

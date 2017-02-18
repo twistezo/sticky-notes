@@ -38,17 +38,18 @@
             <div class="col-sm-4">	</div>
 
             <div class="col-sm-4">
-                <form th:action="@{/addNote}" method="post">
+                <form th:action="@{/addNote}" th:object="${note}" method="post">
 
                     <div class="form-group">
                         <label for="name">Note title:</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" >
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="comment">Your note:</label>
                         <textarea type="text" class="form-control" rows="5" id="body" name="body" placeholder="Tip: You can extend input field." ></textarea>
-                        <!--<input type="text" class="form-control" id="body" name="body" placeholder="Enter note" >-->
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></div>
                     </div>
 
                     <button class="buttonLogin" type="submit">Add</button>

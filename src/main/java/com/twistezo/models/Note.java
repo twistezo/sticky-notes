@@ -1,6 +1,8 @@
 package com.twistezo.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -24,10 +26,14 @@ public class Note {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AUTHOR_ID")
 	private User author;
-	
+
+	@NotNull
+    @Size(min=2, max=50)
 	@Column(name = "TITLE", length = 50)
 	private String title;
-	
+
+	@NotNull
+    @Size(min=2, max=500)
 	@Column(name = "BODY", length = 500)
 	private String body;
 	

@@ -38,6 +38,15 @@
 			<form th:action="@{/users}" th:object="${userWrapper}" method="post">
                 <div class="col-sm-1"></div>
 				<div class="col-sm-10">
+                    <div class="alert alert-info alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <strong>Info!</strong>
+                        <p>You can edit all users data except for password.
+                        <p>You can click to some user's notes (orange) and check them.
+                        <p>If You want to delete some users simply check them.
+                        <p>This message will disappear after 5 seconds.
+                    </div>
+                    <br>
 				  <table class="table table-hover">
 				    <thead>
 				      <tr>
@@ -59,7 +68,9 @@
                         <td><input type="text" class="form-control" th:field="*{listOfUsers[__${i.index}__].lastName}"></td>
                         <td th:text="${#strings.substring(u.password,0,5) +'...'}"></td>
                         <td><input type="text" class="form-control" th:field="*{listOfUsers[__${i.index}__].role}"></td>
-				        <td><span th:each="note, i: ${u.notes}" th:text="${(i.index > 0 ? ', ' : '') + note.id}" /></td>
+                        <td><a th:href="@{/notesByAuthorId(author=${u.id})}">
+                            <span style="color: #f4511e;" th:each="note, i: ${u.notes}" th:text="${(i.index > 0 ? ', ' : '') + note.id}" />
+                        </a></td>
 				 		<td><input type="checkbox" th:field="*{listOfUsers[__${i.index}__].userChecked}" /></td>
 				      </tr>
 				    </tbody>
