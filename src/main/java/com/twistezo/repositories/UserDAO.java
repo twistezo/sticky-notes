@@ -1,11 +1,10 @@
 package com.twistezo.repositories;
 
-import java.util.List;
-
+import com.twistezo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.twistezo.models.User;
+import java.util.List;
 
 /**
  * 
@@ -16,7 +15,7 @@ import com.twistezo.models.User;
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
 
-	User findByUsername(String username);
 	User findById(Long id);
+    User findByUsername(String username);
 	List<User> findAll();
 }

@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 
  * @author twistezo
- *
  */
 
 @Service
@@ -24,51 +22,45 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	@Override
-	public List<User> findAll() {
-		return this.userDAO.findAll();
-	}
 
+    /**
+     * Encoding password by bCrypt.
+     * Setting role for new user by default as 'ROLE_USER'.
+     * Check whether username exists in DB.
+     * If yes -> save user in DB.
+     * @param user
+     */
 	@Override
 	public void save(User user) {
+
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		
-		/**
-		 * VERIFICATION of addUser & register
-		 * 1. Check that userinput: username & password aren't empty
-		 * 2. Check that userinput: role isn't empty and diffrent from "ROLE_USER"
-		 * 3. Check exist of duplicate userinput: username in database
-		 * If below is ok -> save new user to DB
-		 */
-		if(!user.getUsername().isEmpty() && !user.getPassword().isEmpty()){
-			if(user.getRole().isEmpty() || (user.getRole() != "ROLE_USER")){
-				user.setRole("ROLE_USER");
-			}
+        user.setRole("ROLE_USER");
 
-			if(userDAO.findByUsername(user.getUsername()) == null){
-				userDAO.save(user);
-			}
-		}
+        if(userDAO.findByUsername(user.getUsername()) == null){
+            userDAO.save(user);
+        }
 	}
 
-	@Override
-	public User findByUsername(String username) {
-		return this.userDAO.findByUsername(username);
-	}
-
+    /**
+     * Checking whether username & id exists in DB.
+     * If yes -> delete username from DB by id.
+     * @param user
+     */
 	@Override
 	public void delete(User user) {
 		
-		if( (!user.getUsername().isEmpty()) && (user.getId() != null) ){
-			if( findByUsername(user.getUsername()) != null){
-				if ( findById(user.getId()) != null){
-					this.userDAO.delete(user.getId());	
-				}
-			}
-		}
+        if( ( findByUsername(user.getUsername()) != null ) && ( findById(user.getId()) != null ) ){
+            this.userDAO.delete(user.getId());
+        }
 	}
 
+    /**
+     * Use userWrapper which holds all users in one external list.
+     * If some user has isUserChecked() == true -> delete user from DB.
+     * Field userChecked() is using in fronnt-end side.
+     * @param userWrapper
+     */
 	@Override
 	public void deleteCheckedUser(UserWrapper userWrapper) {
 		
@@ -79,17 +71,31 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+    /**
+     * Update instead of save(), save all users in DB. Not only one by id.
+     * @param userWrapper
+     */
     @Override
     public void update(UserWrapper userWrapper) {
-        for(User n : userWrapper.getListOfUsers()){
 
+        for(User n : userWrapper.getListOfUsers()){
             this.userDAO.save(n);
         }
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return this.userDAO.findByUsername(username);
     }
 
     @Override
 	public User findById(Long id) {
 		return this.userDAO.findById(id);
 	}
+
+    @Override
+    public List<User> findAll() {
+        return this.userDAO.findAll();
+    }
 
 }

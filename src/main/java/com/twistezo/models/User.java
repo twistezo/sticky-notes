@@ -37,7 +37,7 @@ public class User {
 	private String lastName;
 
     @NotNull
-    @Size(min=2, max=30)
+    @Size(min=2, max=60)
 	@Column(name = "PASSWORD", length = 60)
 	private String password;
 
@@ -67,8 +67,40 @@ public class User {
 		this.username = username;
 		this.password = password;
 	}
-	
-	public Long getId() {
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        User user = (User) o;
+//
+//        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+//        return username != null ? username.equals(user.username) : user.username == null;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = id != null ? id.hashCode() : 0;
+//        result = 31 * result + (username != null ? username.hashCode() : 0);
+//        return result;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", username='" + username + '\'' +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", password='" + password + '\'' +
+//                ", role='" + role + '\'' +
+//                ", notes=" + notes +
+//                ", userChecked=" + userChecked +
+//                '}';
+//    }
+
+    public Long getId() {
 		return id;
 	}
 

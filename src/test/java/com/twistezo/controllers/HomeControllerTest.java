@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,23 +33,23 @@ public class HomeControllerTest {
 	
 	
 	@Test
-    public void contexLoads() throws Exception {
+    public void contextLoads() throws Exception {
         assertThat(homeController).isNotNull();
     }
 	
 	@Test
 	public void checkNotes() throws Exception {
-		assertThat(userService.findAll()).isNotNull();
+		assertThat(noteService.findAllByOrderByDate()).isNotNull();
 	}
 	
-//	@Test
-//	public void checkUsers() throws Exception {
-//		assertThat(noteService.findAll()).isNotNull();
-//	}
+	@Test
+	public void checkUsers() throws Exception {
+		assertThat(userService.findAll()).isNotNull();
+	}
 
-//	@Test
-//	public void checkPageStatus() throws Exception {
-//	    this.mockMvc.perform(get("/")).andExpect(status().isOk());
-//	}
-//
+	@Test
+	public void checkPageStatus() throws Exception {
+        this.mockMvc.perform(get("/")).andExpect(status().isOk());
+	}
+
 }

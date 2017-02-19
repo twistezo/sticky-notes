@@ -12,12 +12,12 @@ import java.util.List;
  */
 
 public interface UserService {
-	
-	void save(User user);
-	void delete(User user);
-	void deleteCheckedUser(UserWrapper userWrapper);
-	void update(UserWrapper userWrapper);
+
+    User findByUsername(String username);
+    User findById(Long id);
 	List<User> findAll();
-	User findByUsername(String username);
-	User findById(Long id);
+    void save(User user);
+    void delete(User user);
+    void deleteCheckedUser(UserWrapper userWrapper);
+    void update(UserWrapper userWrapper);
 }

@@ -19,8 +19,8 @@ public class Note {
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	/**
+
+    /**
 	 * MANY "Note" can belong to ONE "User.author"
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -61,7 +61,38 @@ public class Note {
 		this.isDone = isDone;
 	}
 
-	public Long getId() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Note note = (Note) o;
+
+        if (id != null ? !id.equals(note.id) : note.id != null) return false;
+        return author != null ? author.equals(note.author) : note.author == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", author=" + author +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", date=" + date +
+                ", isDone=" + isDone +
+                ", noteChecked=" + noteChecked +
+                '}';
+    }
+
+    public Long getId() {
 		return id;
 	}
 

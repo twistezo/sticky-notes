@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 
  * @author twistezo
- *
  */
 
 @Service
@@ -26,41 +24,15 @@ public class NoteServiceImpl implements NoteService {
 	@Autowired
     private UserDAO userDAO;
 
-	@Override
-	public List<Note> findAllByOrderByDate() {
-		return this.noteDAO.findAllByOrderByDateDesc();
-	}
-
-    @Override
-    public List<Note> findAllByAuthor(User user) {
-        return this.noteDAO.findAllByAuthor(user);
-    }
-
-    @Override
-    public Note findById(Long id) {
-        return this.noteDAO.findById(id);
-    }
-
-    @Override
-    public void deleteCheckedNote(NoteWrapper noteWrapper) {
-        for(Note n : noteWrapper.getListOfNotes()){
-
-            if(n.isNoteChecked()){
-                this.noteDAO.delete(n.getId());
-            }
-        }
-    }
-
     /**
-     * Only logged user can add note
+     * Getting username of current logged user from Security Context.
+     * Setting field author to current logged user.
+     * Saving note in DB.
      * @param note
      */
     @Override
     public void save(Note note) {
 
-        /*
-        Get username of current logged user from Security Context
-         */
         Object currentUserLoggedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
         for(User user : userDAO.findAll()){
@@ -72,16 +44,47 @@ public class NoteServiceImpl implements NoteService {
     }
 
     /**
-     * This method makes update of every row in note DB
+     * Using NoteWrapper which holds external list of all notes.
+     * If some note has true in field note.checkedNote -> save note id DB by id.
+     * Field checkedNote is using in front-end side.
      * @param noteWrapper
-     * bean hold list of notes
+     */
+    @Override
+    public void deleteCheckedNote(NoteWrapper noteWrapper) {
+
+        for(Note n : noteWrapper.getListOfNotes()){
+            if(n.isNoteChecked()){
+                this.noteDAO.delete(n.getId());
+            }
+        }
+    }
+
+    /**
+     * Using NoteWrapper which holds external list of all notes.
+     * Update() instead of save() saving all notes in DB, not only one by id.
+     * @param noteWrapper
      */
     @Override
     public void update(NoteWrapper noteWrapper) {
-        for(Note n : noteWrapper.getListOfNotes()){
 
+        for(Note n : noteWrapper.getListOfNotes()){
             this.noteDAO.save(n);
         }
+    }
+
+    @Override
+    public Note findById(Long id) {
+        return this.noteDAO.findById(id);
+    }
+
+    @Override
+    public List<Note> findAllByOrderByDate() {
+        return this.noteDAO.findAllByOrderByDateDesc();
+    }
+
+    @Override
+    public List<Note> findAllByAuthor(User user) {
+        return this.noteDAO.findAllByAuthor(user);
     }
 
 }

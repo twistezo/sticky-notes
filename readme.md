@@ -1,5 +1,5 @@
 # StickyNotes
-Secured web service for manage notes (Spring + Hibernate + MySQL + Thymeleaf + Bootstrap)
+Secured web service for manage notes, users (Spring + Hibernate + MySQL + Thymeleaf + Bootstrap)
 
 <table>
     <tr>
