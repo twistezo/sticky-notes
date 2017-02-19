@@ -1,10 +1,13 @@
-package com.twistezo.configurations;
+package com.twistezo.controllers;
 
+import com.twistezo.models.NoteWrapper;
+import com.twistezo.services.NoteService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -19,24 +22,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class WebSecurityConfigTest {
+public class NotesControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private WebSecurityConfig webSecurityConfig;
+    private NoteService noteService;
+
+    @Autowired
+    private NoteWrapper noteWrapper;
+
+    @Autowired
+    private NotesController notesController;
 
     @Test
     public void contextLoads() throws Exception {
-        assertThat(webSecurityConfig).isNotNull();
+        assertThat(notesController).isNotNull();
     }
 
     @Test
-    public void checkStatusOfAntMatchers() throws Exception {
-        this.mockMvc.perform(get("/")).andExpect(status().isOk());
-        this.mockMvc.perform(get("/register")).andExpect(status().isOk());
-        this.mockMvc.perform(get("/login")).andExpect(status().isOk());
+    public void checkLists() throws Exception {
+        assertThat(noteService.findAllByOrderByDate()).isNotNull();
+        assertThat(noteWrapper.getListOfNotes()).isNotNull();
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
+    public void checkPageStatus() throws Exception {
+        this.mockMvc.perform(get("/notes")).andExpect(status().isOk());
     }
 
 }
