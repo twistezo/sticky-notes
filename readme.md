@@ -1,5 +1,4 @@
 ## StickyNotes
-<img src="https://i.imgur.com/9bdYdUr.png" width="100">
 
 ### Description
 RESTful secured web service for manage to-do notes and users
@@ -25,6 +24,11 @@ github.com/twistezo/sticky-notes-android-client
 
 
 <table>
+    <tr>
+        <td>
+            <img src="https://i.imgur.com/9bdYdUr.png" width="500">
+        </td>
+    </tr>
     <tr>
         <td>
             <img src="http://i.imgur.com/GNY490G.png" width="500">
