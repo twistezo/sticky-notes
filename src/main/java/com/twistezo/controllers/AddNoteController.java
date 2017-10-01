@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-/**
- * @author twistezo (15.02.2017)
- */
-
 @Controller
 public class AddNoteController {
 
@@ -21,23 +17,17 @@ public class AddNoteController {
     private NoteService noteService;
 
     @RequestMapping(value = "/addNote", method = RequestMethod.GET)
-    public String addNote(Note note){
-
+    public String addNote(Note note) {
         return "/addNote";
     }
 
     @RequestMapping(value = "/addNote", method = RequestMethod.POST)
-    public String saveNote(@Valid Note note, BindingResult bindingResult){
-
-        if(bindingResult.hasErrors()){
+    public String saveNote(@Valid Note note, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "addNote";
-        }
-        else{
+        } else {
             noteService.save(note);
             return "redirect:/addNote";
         }
-
     }
-
-
 }

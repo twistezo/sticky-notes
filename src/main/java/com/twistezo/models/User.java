@@ -6,12 +6,6 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * 
- * @author twistezo
- *
- */
-
 @Entity
 @Table(name = "USERS")
 public class User {
@@ -22,45 +16,45 @@ public class User {
 	private Long id;
 
 	@NotNull
-    @Size(min=2, max=30)
+	@Size(min = 2, max = 30)
 	@Column(name = "USERNAME", length = 50)
 	private String username;
 
 	@NotNull
-    @Size(min=2, max=30)
+	@Size(min = 2, max = 30)
 	@Column(name = "FIRST_NAME", length = 50)
 	private String firstName;
 
-    @NotNull
-    @Size(min=2, max=30)
+	@NotNull
+	@Size(min = 2, max = 30)
 	@Column(name = "LAST_NAME", length = 50)
 	private String lastName;
 
-    @NotNull
-    @Size(min=2, max=60)
+	@NotNull
+	@Size(min = 2, max = 60)
 	@Column(name = "PASSWORD", length = 60)
 	private String password;
 
-    @Size(min=2, max=30)
+	@Size(min = 2, max = 30)
 	@Column(name = "ROLE", length = 50)
 	private String role;
-	
+
 	/**
 	 * ONE User.author can have MANY <Note>notes
 	 */
 	@OneToMany(mappedBy = "author")
 	private Set<Note> notes = new HashSet<>();
 
-    /**
-     * @Transient is used for non connecting this field with DB
-     */
-    @Transient
+	/**
+	 * @Transient is used for non connecting this field with DB
+	 */
+	@Transient
 	private boolean userChecked = false;
 
 	public User() {
 		super();
 	}
-	
+
 	public User(Long id, String username, String password) {
 		super();
 		this.id = id;
@@ -68,39 +62,7 @@ public class User {
 		this.password = password;
 	}
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        User user = (User) o;
-//
-//        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-//        return username != null ? username.equals(user.username) : user.username == null;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = id != null ? id.hashCode() : 0;
-//        result = 31 * result + (username != null ? username.hashCode() : 0);
-//        return result;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + id +
-//                ", username='" + username + '\'' +
-//                ", firstName='" + firstName + '\'' +
-//                ", lastName='" + lastName + '\'' +
-//                ", password='" + password + '\'' +
-//                ", role='" + role + '\'' +
-//                ", notes=" + notes +
-//                ", userChecked=" + userChecked +
-//                '}';
-//    }
-
-    public Long getId() {
+	public Long getId() {
 		return id;
 	}
 

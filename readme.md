@@ -3,6 +3,8 @@
 ### Description
 RESTful secured web service for manage to-do notes and users
 
+Check with username/password -> admin/admin
+
 ### Tools
 Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
 
@@ -19,6 +21,13 @@ Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
 
 ### Source code ANDROID
 github.com/twistezo/sticky-notes-android-client
+
+### Build, Run, Test
+```
+mvn install
+mvn spring-boot:run
+mvn test
+```
 
 ### Screenshots
 

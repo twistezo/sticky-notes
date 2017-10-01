@@ -15,10 +15,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * @author twistezo (19.02.2017)
- */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -30,26 +26,22 @@ public class AddNoteControllerTest {
     @Autowired
     private AddNoteController addNoteController;
 
-
     @Test
     public void contextLoads() throws Exception {
         assertThat(addNoteController).isNotNull();
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles = "USER")
     public void checkPageStatus() throws Exception {
         this.mockMvc.perform(get("/addNote")).andExpect(status().isOk());
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles = "USER")
     public void checkPostMethod() throws Exception {
 
-        this.mockMvc.perform(post("/addNote")
-                .param("username", "user1")
-                .param("password", "asd")
-                .with(csrf()))
+        this.mockMvc.perform(post("/addNote").param("username", "user1").param("password", "asd").with(csrf()))
                 .andExpect(status().isOk());
     }
 

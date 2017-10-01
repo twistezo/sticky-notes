@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-/**
- * @author twistezo (26.03.2017)
- */
-
 @RestController
 public class RestEndController {
     private NoteService noteService;
@@ -24,22 +19,22 @@ public class RestEndController {
     }
 
     @RequestMapping(value = "rest/notes/{id}", method = RequestMethod.GET)
-    public Note getNoteById (@PathVariable("id") Long id) {
+    public Note getNoteById(@PathVariable("id") Long id) {
         return noteService.findById(id);
     }
 
     @RequestMapping(value = "rest/notes", method = RequestMethod.GET)
-    public List<Note> getAllNotes () {
+    public List<Note> getAllNotes() {
         return noteService.findAllByOrderByDate();
     }
 
     @RequestMapping(value = "rest/users/{id}", method = RequestMethod.GET)
-    public User getUserById (@PathVariable("id") Long id) {
+    public User getUserById(@PathVariable("id") Long id) {
         return userService.findById(id);
     }
 
     @RequestMapping(value = "rest/users", method = RequestMethod.GET)
-    public List<User> getAllUsers () {
+    public List<User> getAllUsers() {
         return userService.findAll();
     }
 }

@@ -11,17 +11,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author twistezo
- */
-
 @Service
 public class NoteServiceImpl implements NoteService {
 
-	@Autowired
-	private NoteDAO noteDAO;
+    @Autowired
+    private NoteDAO noteDAO;
 
-	@Autowired
+    @Autowired
     private UserDAO userDAO;
 
     /**
@@ -32,11 +28,9 @@ public class NoteServiceImpl implements NoteService {
      */
     @Override
     public void save(Note note) {
-
         Object currentUserLoggedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        for(User user : userDAO.findAll()){
-            if(currentUserLoggedUsername.equals(user.getUsername())){
+        for (User user : userDAO.findAll()) {
+            if (currentUserLoggedUsername.equals(user.getUsername())) {
                 note.setAuthor(user);
                 noteDAO.save(note);
             }
@@ -51,9 +45,8 @@ public class NoteServiceImpl implements NoteService {
      */
     @Override
     public void deleteCheckedNote(NoteWrapper noteWrapper) {
-
-        for(Note n : noteWrapper.getListOfNotes()){
-            if(n.isNoteChecked()){
+        for (Note n : noteWrapper.getListOfNotes()) {
+            if (n.isNoteChecked()) {
                 this.noteDAO.delete(n.getId());
             }
         }
@@ -66,8 +59,7 @@ public class NoteServiceImpl implements NoteService {
      */
     @Override
     public void update(NoteWrapper noteWrapper) {
-
-        for(Note n : noteWrapper.getListOfNotes()){
+        for (Note n : noteWrapper.getListOfNotes()) {
             this.noteDAO.save(n);
         }
     }

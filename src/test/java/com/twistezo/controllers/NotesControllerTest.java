@@ -15,10 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * @author twistezo (19.02.2017)
- */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -48,7 +44,7 @@ public class NotesControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles = "USER")
     public void checkPageStatus() throws Exception {
         this.mockMvc.perform(get("/notes")).andExpect(status().isOk());
     }

@@ -26,28 +26,23 @@ public class AddUserControllerTest {
     @Autowired
     private AddUserController addUserController;
 
-
     @Test
     public void contextLoads() throws Exception {
         assertThat(addUserController).isNotNull();
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles = "USER")
     public void checkPageStatus() throws Exception {
         this.mockMvc.perform(get("/addUser")).andExpect(status().isOk());
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles = "USER")
     public void checkPostMethod() throws Exception {
 
-        this.mockMvc.perform(post("/addUser")
-                .param("username", "user1")
-                .param("password", "asd")
-                .with(csrf()))
+        this.mockMvc.perform(post("/addUser").param("username", "user1").param("password", "asd").with(csrf()))
                 .andExpect(status().isOk());
     }
-	
 
 }

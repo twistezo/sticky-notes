@@ -6,18 +6,17 @@ import com.twistezo.models.User;
 
 import java.util.List;
 
-/**
- * 
- * @author twistezo
- *
- */
-
 public interface NoteService {
 
     Note findById(Long id);
-	List<Note> findAllByOrderByDate();
+
+    List<Note> findAllByOrderByDate();
+
     List<Note> findAllByAuthor(User user);
+
     void save(Note note);
+
     void update(NoteWrapper noteWrapper);
+
     void deleteCheckedNote(NoteWrapper noteWrapper);
 }

@@ -13,12 +13,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 
-/**
- *
- * @author twistezo (15.02.2017)
- *
- */
-
 @Controller
 @SessionAttributes("noteWrapper")
 public class NotesController {
@@ -30,25 +24,18 @@ public class NotesController {
     private NoteWrapper noteWrapper;
 
     @RequestMapping("/notes")
-    public String notes(Model model){
-
+    public String notes(Model model) {
         List<Note> listOfNotes = noteService.findAllByOrderByDate();
         noteWrapper.setListOfNotes(listOfNotes);
-
         model.addAttribute("listOfNotes", listOfNotes);
         model.addAttribute("noteWrapper", noteWrapper);
-
         return "notes";
     }
 
     @RequestMapping(value = "/notes", method = RequestMethod.POST)
-    public String updateNote(@ModelAttribute NoteWrapper noteWrapper){
-
+    public String updateNote(@ModelAttribute NoteWrapper noteWrapper) {
         noteService.update(noteWrapper);
         noteService.deleteCheckedNote(noteWrapper);
-
         return "redirect:/notes";
     }
 }
-
-

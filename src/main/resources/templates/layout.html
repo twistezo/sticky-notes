@@ -1,54 +1,51 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:fragment="site-head">
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/scripts.js" th:src="@{/js/scripts.js}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/scripts.js" th:src="@{/js/scripts.js}"></script>
 	<title>Sticky Notes</title>
 </head>
+
 <body>
 	<header th:fragment="site-header">
-	
 		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		      <a class="navbar-brand"><span class="glyphicon glyphicon-pencil"></span> Sticky Notes! </a>
-		    </div>
-		    <ul class="nav navbar-nav">
-		    
-		      <li><a href="/">Home</a></li>
-		      <li><a href="/notes">Notes</a></li>
-              <li><a href="/users">Users</a></li>
-		      <li><a href="/addNote">*Add Note</a></li>
-		      <li><a href="/addUser">*Add user</a></li>
-		    </ul>
-		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="/register">   <span class="glyphicon glyphicon-user"></span>   Sign Up</a></li>
-		      <li sec:authorize="isAnonymous()">
-		      	<a href="/login">   
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand"><span class="glyphicon glyphicon-pencil"></span> Sticky Notes! </a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="/">Home</a></li>
+					<li><a href="/notes">Notes</a></li>
+					<li><a href="/users">Users</a></li>
+					<li><a href="/addNote">*Add Note</a></li>
+					<li><a href="/addUser">*Add user</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/register">   <span class="glyphicon glyphicon-user"></span>   Sign Up</a></li>
+					<li sec:authorize="isAnonymous()">
+						<a href="/login">   
 		      		<span class="glyphicon glyphicon-log-in"></span>   
 		      		Login
 		      	</a>
-		      </li>
-       		  <li sec:authorize="isAuthenticated()">   
-       		  	<a href="/logout" >   
+					</li>
+					<li sec:authorize="isAuthenticated()">
+						<a href="/logout">   
        		  		<span class="glyphicon glyphicon-log-in"></span>   
        		  		Sign Out
        		  	</a>
-       		  </li>
-		    </ul>
-		  </div>
+					</li>
+				</ul>
+			</div>
 		</nav>
-	</header>	
+	</header>
 	<footer th:fragment="site-footer">
-	&copy; twistezo, 2017
+		&copy; twistezo, 2017
 	</footer>
 </body>
+
 </html>
-
-

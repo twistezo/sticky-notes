@@ -7,16 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * 
- * @author twistezo
- *
- */
-
 @Repository
 public interface NoteDAO extends JpaRepository<Note, Long> {
 
     Note findById(Long id);
+
     List<Note> findAllByOrderByDateDesc();
+
     List<Note> findAllByAuthor(User user);
 }

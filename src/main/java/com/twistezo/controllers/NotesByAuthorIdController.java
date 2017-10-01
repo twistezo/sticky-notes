@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-/**
- * @author twistezo (18.02.2017)
- */
-
 @Controller
 public class NotesByAuthorIdController {
 
@@ -23,11 +19,10 @@ public class NotesByAuthorIdController {
     private NoteService noteService;
 
     @RequestMapping(value = "/notesByAuthorId", method = RequestMethod.GET)
-    public String findNoteById(Model model, @RequestParam("author") User author){
+    public String findNoteById(Model model, @RequestParam("author") User author) {
         List<Note> notesByAuthorId = noteService.findAllByAuthor(author);
         model.addAttribute("author", author);
         model.addAttribute("notesByAuthorId", notesByAuthorId);
-
         return "notesByAuthorId";
     }
 }

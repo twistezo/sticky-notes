@@ -1,6 +1,5 @@
 package com.twistezo.services;
 
-import com.twistezo.models.Note;
 import com.twistezo.models.User;
 import com.twistezo.models.UserWrapper;
 import com.twistezo.repositories.UserDAO;
@@ -10,18 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author twistezo
- */
-
 @Service
-public class UserServiceImpl implements UserService{
-	
-	@Autowired
-	UserDAO userDAO;
-	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    UserDAO userDAO;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * Encoding password by bCrypt.
@@ -30,30 +25,26 @@ public class UserServiceImpl implements UserService{
      * If yes -> save user in DB.
      * @param user
      */
-	@Override
-	public void save(User user) {
-
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		
+    @Override
+    public void save(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
-
-        if(userDAO.findByUsername(user.getUsername()) == null){
+        if (userDAO.findByUsername(user.getUsername()) == null) {
             userDAO.save(user);
         }
-	}
+    }
 
     /**
      * Checking whether username & id exists in DB.
      * If yes -> delete username from DB by id.
      * @param user
      */
-	@Override
-	public void delete(User user) {
-		
-        if( ( findByUsername(user.getUsername()) != null ) && ( findById(user.getId()) != null ) ){
+    @Override
+    public void delete(User user) {
+        if ((findByUsername(user.getUsername()) != null) && (findById(user.getId()) != null)) {
             this.userDAO.delete(user.getId());
         }
-	}
+    }
 
     /**
      * Use userWrapper which holds all users in one external list.
@@ -61,15 +52,14 @@ public class UserServiceImpl implements UserService{
      * Field userChecked() is using in fronnt-end side.
      * @param userWrapper
      */
-	@Override
-	public void deleteCheckedUser(UserWrapper userWrapper) {
-		
-		for(User u : userWrapper.getListOfUsers()){
-			if(u.isUserChecked() == true){
-				this.userDAO.delete(u.getId());
-			}
-		}
-	}
+    @Override
+    public void deleteCheckedUser(UserWrapper userWrapper) {
+        for (User u : userWrapper.getListOfUsers()) {
+            if (u.isUserChecked() == true) {
+                this.userDAO.delete(u.getId());
+            }
+        }
+    }
 
     /**
      * Update instead of save(), save all users in DB. Not only one by id.
@@ -77,8 +67,7 @@ public class UserServiceImpl implements UserService{
      */
     @Override
     public void update(UserWrapper userWrapper) {
-
-        for(User n : userWrapper.getListOfUsers()){
+        for (User n : userWrapper.getListOfUsers()) {
             this.userDAO.save(n);
         }
     }
@@ -89,9 +78,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-	public User findById(Long id) {
-		return this.userDAO.findById(id);
-	}
+    public User findById(Long id) {
+        return this.userDAO.findById(id);
+    }
 
     @Override
     public List<User> findAll() {

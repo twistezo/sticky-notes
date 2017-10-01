@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * @author twistezo (18.02.2017)
- */
-
 @Controller
 public class OneNoteController {
 
@@ -20,10 +16,9 @@ public class OneNoteController {
     private NoteService noteService;
 
     @RequestMapping(value = "/oneNote", method = RequestMethod.GET)
-    public String findNoteById(Model model, @RequestParam("id") Long id){
+    public String findNoteById(Model model, @RequestParam("id") Long id) {
         Note note = noteService.findById(id);
         model.addAttribute("note", note);
-
         return "oneNote";
     }
 

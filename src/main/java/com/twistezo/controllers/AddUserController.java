@@ -10,34 +10,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-/**
- * 
- * @author twistezo
- *
- */
-
 @Controller
 public class AddUserController {
-	
+
 	@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
-	public String addUser(User user){
-		
+	public String addUser(User user) {
 		return "addUser";
 	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public String addUser(@Valid User user, BindingResult bindingResult){
-
-	    if(bindingResult.hasErrors()){
-	        return "addUser";
-        }
-        else{
-            userService.save(user);
-            return "redirect:/users";
-        }
-
+	public String addUser(@Valid User user, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "addUser";
+		} else {
+			userService.save(user);
+			return "redirect:/users";
+		}
 	}
 }

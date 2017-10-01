@@ -11,10 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- * @author twistezo (19.02.2017)
- */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -30,7 +26,6 @@ public class NoteServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-
         noteTest = new Note();
         noteTest.setBody("Test Body");
         noteTest.setDone(true);
@@ -41,9 +36,7 @@ public class NoteServiceImplTest {
 
     @Test
     public void testNoteCRUD() throws Exception {
-
         noteDAO.save(noteTest);
-
         Long noteTestId = noteTest.getId();
         noteDAO.delete(noteTestId);
     }

@@ -10,12 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-/**
- * 
- * @author twistezo
- *
- */
-
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
@@ -30,17 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		/*
-		 * .antMatchers -> allowed URLs
-		 *  
-		 *  disable -> http.csrf().disable(); <- only for testing
-		 * 
-		 */
-
-//		http.csrf().disable();
-
 		http.authorizeRequests()
-		
 				.antMatchers("/index", "/register", "/login")
 				.permitAll()
 				.anyRequest()
@@ -58,7 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 }

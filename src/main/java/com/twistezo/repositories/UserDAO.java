@@ -6,16 +6,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * 
- * @author twistezo
- *
- */
-
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
 
 	User findById(Long id);
-    User findByUsername(String username);
+
+	User findByUsername(String username);
+
 	List<User> findAll();
 }

@@ -5,12 +5,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author twistezo (15.02.2017)
- *
- */
-
 @Component
 public class NoteWrapper {
 
