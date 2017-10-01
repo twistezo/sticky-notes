@@ -1,4 +1,4 @@
-## StickyNotes
+## Sticky-Notes
 
 ### Description
 RESTful secured web service for manage to-do notes and users
