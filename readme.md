@@ -1,7 +1,7 @@
 ## Sticky-Notes
 
 ### Description
-RESTful secured web service for manage to-do notes and users
+RESTful secured web service for manage to-do notes and users (non-commercial)
 
 Check with username/password -> admin/admin
 
