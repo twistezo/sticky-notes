@@ -6,4 +6,4 @@ before_install:
  - mysql -u root -e 'CREATE DATABASE IF NOT EXISTS sticky_notes_db;'
  - mysql -u root -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
  - mysql -u root -e "GRANT ALL ON sticky_notes_db.* TO 'dev'@'localhost';"
-script: spring-boot:run
+script: mvn spring-boot:run
