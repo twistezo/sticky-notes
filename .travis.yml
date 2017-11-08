@@ -3,8 +3,7 @@ sudo: false
 services: 
  - mysql
 before_install: 
- - mysql -u root -p -e 'CREATE DATABASE IF NOT EXISTS car_rental;'
+ - mysql -u root -p -e 'CREATE DATABASE IF NOT EXISTS sticky_notes_db;'
  - mysql -u root -p -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
- - mysql -u root -p -e "GRANT ALL ON car_rental.* TO 'dev'@'localhost';"
-# install: mvn install
+ - mysql -u root -p -e "GRANT ALL ON sticky_notes_db.* TO 'dev'@'localhost';"
 script: spring-boot:run
