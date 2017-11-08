@@ -6,7 +6,7 @@
 RESTful secured web service for manage to-do notes and users (non-commercial)
 
 ### Tools
-Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
+Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript, Travis CI
 
 ### Features WEB
 - spring security (registration, login)
