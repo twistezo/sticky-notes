@@ -3,8 +3,6 @@
 ### Description
 RESTful secured web service for manage to-do notes and users (non-commercial)
 
-Check with username/password -> admin/admin
-
 ### Tools
 Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
 
@@ -22,10 +20,18 @@ Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
 ### Source code ANDROID
 github.com/twistezo/sticky-notes-android-client
 
-### Build, Run, Test
+### Requirements
+Java, mySQL, Maven
+
+### Run, Test
 ```
-mvn install
-mvn spring-boot:run
+// prepare new user and empty DB
+mysql -u root -p -e 'CREATE DATABASE IF NOT EXISTS sticky_notes_db;'
+mysql -u root -p -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
+mysql -u root -p -e "GRANT ALL ON sticky_notes_db.* TO 'dev'@'localhost';"
+
+// default username/password -> admin/admin
+mvn spring-boot:run -> localhost:8080
 mvn test
 ```
 

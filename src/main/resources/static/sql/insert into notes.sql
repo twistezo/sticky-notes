@@ -1,4 +1,4 @@
-SELECT * FROM stickynotes_db.notes;
+SELECT * FROM sticky_notes_db.notes;
 
 INSERT INTO `notes` (`id`, `body`, `date`, `is_done`, `title`, `author_id`) VALUES
 (1,	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vulputate convallis nisl, quis venenatis dui pretium vitae. Donec sit amet hendrerit nulla. Fusce dui odio, tincidunt a imperdiet vel, suscipit eu sem. In et lectus maximus, condimentum risus quis, tempus sem. Nullam commodo mauris ut molestie maximus.',	'2017-02-10 00:00:00',	1,	'Title 1', 1),

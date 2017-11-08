@@ -1,4 +1,4 @@
-SELECT * FROM stickynotes_db.users;
+SELECT * FROM sticky_notes_db.users;
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `password`, `role`, `username`) VALUES
 	(1,	'Adam1',	'Last1',	'$2a$10$zYCGrJGBYRJlAoHLNTTJZ.8Gw5pq0gvZFpXHOUz5axZx6.iUjjiNi',	"ROLE_USER",	'user1'),
