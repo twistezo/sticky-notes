@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/twistezo/sticky-notes.svg?branch=master)](https://travis-ci.org/twistezo/sticky-notes)
-
 ## Sticky-Notes
+[![Build Status](https://travis-ci.org/twistezo/sticky-notes.svg?branch=master)](https://travis-ci.org/twistezo/sticky-notes)
 
 ### Description
 RESTful secured web service for manage to-do notes and users (non-commercial)
@@ -27,18 +26,17 @@ Java, mySQL, Maven
 
 ### Run, Test
 ```
-// prepare new user and empty DB
+prepare new user and empty DB:
 mysql -u root -p -e 'CREATE DATABASE IF NOT EXISTS sticky_notes_db;'
 mysql -u root -p -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
 mysql -u root -p -e "GRANT ALL ON sticky_notes_db.* TO 'dev'@'localhost';"
 
-// default username/password -> admin/admin
+default username/password: admin/admin
 mvn spring-boot:run -> localhost:8080
 mvn test
 ```
 
 ### Screenshots
-
 
 <table>
     <tr>
