@@ -24,7 +24,7 @@ github.com/twistezo/sticky-notes-android-client
 ### Requirements
 Java, mySQL, Maven
 
-### Run, Test
+### Run, test
 ```
 prepare new user and empty DB:
 mysql -u root -p -e 'CREATE DATABASE IF NOT EXISTS sticky_notes_db;'
